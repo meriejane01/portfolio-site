@@ -125,7 +125,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 form{display:grid;gap:var(--s2)}
 label{display:grid;gap:.35rem;font-weight:600;color:var(--ink);font-size:.95rem}
 input,textarea{font:inherit;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:4px;padding:.8rem .9rem;width:100%;min-height:3rem}
-textarea{min-height:9rem;resize:vertical}
+textarea{min-height:4rem;resize:vertical}
 input:focus,textarea:focus{outline:3px solid var(--ink);outline-offset:0;border-color:var(--ink)}
 [aria-invalid="true"]{border-color:#b3261e}
 .err{color:#b3261e;font-weight:500;font-size:.875rem;min-height:1.1em}
