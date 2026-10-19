@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your Name – Web Developer</title>
+<meta name="description" content="Web developer building responsive WordPress, Elementor, HTML, CSS and JavaScript websites. See selected projects and get in touch.">
+<meta property="og:title" content="Your Name – Web Developer">
+<meta property="og:description" content="Responsive websites built with WordPress, Elementor and custom code.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%BB%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <nav class="nav" aria-label="Main">
+      <a class="mark" href="#home" data-bind="name">Your Name</a>
+      <ul>
+        <li><a class="link" href="#home">Home</a></li>
+        <li><a class="link" href="#projects">Projects</a></li>
+        <li><a class="link" href="#about">About</a></li>
+        <li><a class="link" href="#skills">Skills</a></li>
+        <li><a class="btn" href="#contact">Contact</a></li>
+      </ul>
+      <button class="burger" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </nav>
+    <div class="menu" id="menu">
+      <a href="#home">Home</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#skills">Skills</a>
+      <a class="btn" href="#contact">Contact</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="home">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Building websites that look good and work the way they should.</h1>
+        <p class="lead">I’m a web developer focused on building responsive, user-friendly websites and turning designs into functional digital experiences.</p>
+        <div class="cta">
+          <a class="btn" href="#projects">View my projects</a>
+          <a class="btn ghost" href="#contact">Contact me</a>
+        </div>
+      </div>
+      <div class="frame" id="hero-frame" aria-label="Featured project preview"></div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Selected projects</h2>
+        <p>Replace the sample entries with your real work.</p>
+      </div>
+      <div id="project-list"></div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about">
+      <div class="portrait" id="portrait">Add a photo (optional)</div>
+      <div>
+        <h2>About me</h2>
+        <div id="about-text" style="margin-top:var(--s3)"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <h2 style="margin-bottom:var(--s4)">Skills and tools</h2>
+      <div class="skills" id="skill-list"></div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <h2 style="margin-bottom:var(--s4)">Experience</h2>
+      <div id="job-list"></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap contact">
+      <div>
+        <h2>Have a project in mind? Let’s talk.</h2>
+        <p id="availability" style="margin-top:var(--s3)"></p>
+        <ul class="contact-links" id="contact-links"></ul>
+      </div>
+      <form id="form" novalidate>
+        <div class="hp" aria-hidden="true"><label>Leave empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
+        <label>Name<input name="name" autocomplete="name" required><span class="err" data-for="name"></span></label>
+        <label>Email<input name="email" type="email" autocomplete="email" required><span class="err" data-for="email"></span></label>
+        <label>Subject<input name="subject" required><span class="err" data-for="subject"></span></label>
+        <label>Message<textarea name="message" required></textarea><span class="err" data-for="message"></span></label>
+        <button class="btn" type="submit">Send message</button>
+        <div id="status" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div><a class="mark" href="#home" data-bind="name">Your Name</a><p style="margin-top:.5rem;color:var(--muted)" data-bind="tagline"></p></div>
+    <ul>
+      <li><a href="#projects">Projects</a></li><li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li><li><a href="#contact">Contact</a></li>
+    </ul>
+    <div><small>&copy; <span id="year"></span> <span data-bind="name">Your Name</span></small></div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
