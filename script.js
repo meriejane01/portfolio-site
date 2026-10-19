@@ -75,24 +75,65 @@ function frame(p, lazy, tall) {
 const hf = $("#hero-frame");
 frame(SITE.projects[0], false).forEach(n => hf.append(n));
 
-// projects
+// projects: folder-style cards, 12 per batch (3 rows of 4 on desktop)
 const list = $("#project-list");
-SITE.projects.forEach(p => {
-  const f = el("div", { class: "frame" }); frame(p, true).forEach(n => f.append(n));
-  const info = el("div", { class: "info" }, [
-    el("p", { class: "meta", text: p.type }),
-    el("h3", { text: p.name }),
-    el("p", { text: p.description, style: "margin-top:.75rem" }),
-    el("ul", { class: "tags", "aria-label": "Technologies" }, (p.tech || []).map(t => el("li", { text: t }))),
-    p.did && p.did.length ? el("h4", { text: "What I did" }) : null,
-    p.did && p.did.length ? el("ul", { class: "did" }, p.did.map(d => el("li", { text: d }))) : null,
-    (p.url || p.caseStudy) ? el("div", { class: "links" }, [
-      p.url ? el("a", { href: p.url, target: "_blank", rel: "noopener noreferrer", text: "Visit live site" }) : null,
-      p.caseStudy ? el("a", { href: p.caseStudy, text: "Project details" }) : null
-    ]) : null
+const more = $("#more-btn");
+const PAGE = 12;
+let shown = 0;
+function card(p) {
+  const pages = p.did || [];
+  const art = el("article", { class: "folder", tabindex: "-1" }, [
+    el("div", { class: "tab", text: p.type }),
+    el("div", { class: "fbody" }, [
+      p.image ? el("img", { class: "peek", src: p.image, alt: "Screenshot of " + p.name, loading: "lazy", width: 1600, height: 1000 }) : null,
+      el("h3", {}, el("button", { class: "open", type: "button", text: p.name })),
+      pages.length ? el("p", { class: "pl", text: "Pages I developed" }) : null,
+      pages.length ? el("ul", { class: "pages" }, pages.map(d => el("li", { text: d }))) : null,
+      p.tech && p.tech.length ? el("p", { class: "stack", text: p.tech.join(", ") }) : null,
+      (p.url || p.caseStudy) ? el("div", { class: "links" }, [
+        p.url ? el("a", { href: p.url, target: "_blank", rel: "noopener noreferrer", text: "Visit live site" }) : null,
+        p.caseStudy ? el("a", { href: p.caseStudy, text: "Project details" }) : null
+      ]) : null
+    ])
   ]);
-  list.append(el("article", { class: "project" + (p.shape === "narrow" ? " narrow" : "") }, [el("div", { class: "vis" }, f), info]));
-});
+  art.querySelector(".open").addEventListener("click", e => openPreview(p, e.currentTarget));
+  return art;
+}
+function addCards() {
+  const batch = SITE.projects.slice(shown, shown + PAGE);
+  let first = null;
+  batch.forEach(p => { const c = card(p); first = first || c; list.append(c); });
+  shown += batch.length;
+  more.hidden = shown >= SITE.projects.length;
+  return first;
+}
+addCards();
+more.addEventListener("click", () => { const f = addCards(); if (f) f.focus(); });
+
+
+// preview pop-up
+const dlg = $("#preview"), pvView = $("#pv-view"), pvVisit = $("#pv-visit"), pvNote = $("#pv-note");
+let lastTrigger = null;
+function openPreview(p, trigger) {
+  lastTrigger = trigger;
+  $("#pv-title").textContent = p.name;
+  pvView.textContent = ""; pvNote.textContent = "";
+  const useImage = p.image && (p.preview === "image" || !p.url);
+  if (useImage) {
+    pvView.append(el("img", { src: p.image, alt: "Screenshot of " + p.name }));
+  } else if (p.url) {
+    pvView.append(el("iframe", { src: p.url, title: "Live preview of " + p.name, loading: "lazy", sandbox: "allow-scripts allow-same-origin allow-forms allow-popups" }));
+    pvNote.textContent = "If this stays blank, the site doesn’t allow embedding. Use the button below.";
+  } else {
+    pvView.append(el("p", { class: "pv-empty", text: "No preview added yet." }));
+  }
+  pvVisit.hidden = !p.url;
+  if (p.url) pvVisit.href = p.url;
+  dlg.showModal();
+}
+dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+$(".pv-close").addEventListener("click", () => dlg.close());
+dlg.addEventListener("close", () => { pvView.textContent = ""; if (lastTrigger) lastTrigger.focus(); });
 
 // about
 SITE.about.forEach(t => $("#about-text").append(el("p", { text: t })));
