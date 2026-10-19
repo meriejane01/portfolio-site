@@ -4,7 +4,7 @@ export const site = {
   name: 'Merie Jane C. Lamata',
   email: import.meta.env.VITE_CONTACT_EMAIL || 'meriejane111@gmail.com',
   // Add your Upwork profile URL to href. Links with an empty href are not shown.
-  links: [{ label: 'Upwork', href: '' }],
+  links: [{ label: 'Upwork', href: 'https://www.upwork.com/freelancers/~0184f70194aea4abb8?mp_source=share' }],
   available: true,
   availability: 'Open to part-time projects',
   availabilityNote: 'Currently taking on part-time projects, about 3 to 4 hours a day. Timelines are planned around that.',
