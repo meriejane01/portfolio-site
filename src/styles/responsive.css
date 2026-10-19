@@ -1,0 +1,8 @@
+@media (max-width:1024px){.hero{grid-template-columns:1fr;gap:3rem}.hero-shot{margin-right:0}.steps{grid-template-columns:repeat(2,1fr)}.about,.contact{grid-template-columns:1fr}}
+@media (max-width:768px){
+.menu-btn{display:block}
+.nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;gap:1rem;padding:1.5rem;background:var(--bg);border-bottom:1px solid var(--line)}
+.nav.open{display:flex}.avail{border:0;padding:0}
+.project.left,.project.right,.project.tall{grid-template-columns:1fr;gap:1.5rem}.project.right .project-img{order:0}.project.tall{padding:1.25rem}
+.rows li{grid-template-columns:1fr;gap:.5rem}.projects{gap:4rem}.section{padding-block:3.5rem}}
+@media (max-width:480px){.steps{grid-template-columns:1fr}.wrap{width:calc(100% - 2rem)}.header{padding-inline:1rem}}
